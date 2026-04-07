@@ -62,3 +62,5 @@ Deploy model with real-time monitoring
 Experiment with XGBoost / LightGBM
 Implement precision-recall optimisation
 Build dashboard for fraud alerts
+
+While the model achieved high AUC, further validation on unseen real-world data would be required before deployment.
