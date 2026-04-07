@@ -1,0 +1,19 @@
+# Ignore all data folders
+data/
+
+# Ignore csv files (extra safety)
+*.csv
+
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Mac
+.DS_Store
+
+# Models
+*.pkl
+*.joblib
