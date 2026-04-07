@@ -43,11 +43,13 @@ ROC-AUC
 Precision
 Recall
 F1-score
-📈 Model Performance & Selection
-Model	ROC-AUC	Recall (Fraud)	Precision	Notes
-Logistic Regression	0.9917	High	Moderate	Strong baseline, interpretable
-Decision Tree	0.9996	Very High	Lower	Risk of overfitting
-Random Forest	0.9988	High	Balanced	Best trade-off
+
+| Model               | ROC-AUC | Recall (Fraud) | Precision | Notes                          |
+| ------------------- | ------: | -------------: | --------: | ------------------------------ |
+| Logistic Regression |  0.9917 |           High |  Moderate | Strong baseline, interpretable |
+| Decision Tree       |  0.9996 |      Very High |     Lower | Risk of overfitting            |
+| Random Forest       |  0.9988 |           High |  Balanced | Best trade-off                 |
+
 
 👉 Final Model Selected: Random Forest
 Chosen for its ability to balance fraud detection (recall) with precision, reducing missed fraud while controlling false positives.
@@ -62,7 +64,7 @@ Tuned threshold (0.2–0.3):
 Increased recall (captures more fraudulent transactions)
 Increased false positives (acceptable in fraud systems)
 
-This reflects real-world fraud detection systems where risk minimisation is prioritised over accuracy.
+
 
 💡 Key Insights
 Fraud is highly concentrated in specific transaction types (TRANSFER, CASH_OUT)
