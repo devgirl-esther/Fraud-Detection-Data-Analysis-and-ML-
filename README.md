@@ -1,84 +1,64 @@
-# Fraud Detection System (PaySim)
+Fraud Detection Using Machine Learning (PaySim Dataset)
 
-##  Overview
-Built an end-to-end fraud detection pipeline on a highly imbalanced financial dataset (PaySim), focusing on **maximising fraud detection (recall)** while managing false positives — a key real-world trade-off.
+Overview
+This project explores fraud detection in financial transactions using machine learning. The goal is to identify patterns that distinguish fraudulent transactions from legitimate ones and build predictive models that can support real-world fraud prevention systems.
 
----
+Dataset
+Synthetic financial transaction dataset (PaySim)
+Highly imbalanced (fraud cases are rare)
+Includes transaction types, balances, and transfer amounts
 
-## Dataset
-- Synthetic financial transactions (PaySim)  
-- Highly imbalanced (fraud is rare)  
-- Includes transaction type, amount, and account balances  
+Project Workflow
+1. Exploratory Data Analysis (EDA)
+Analysed class imbalance
+Investigated transaction types (TRANSFER, CASH_OUT)
+Explored temporal fraud patterns
+Identified anomalous behaviour in transaction balances
 
----
+2. Feature Engineering
+Key engineered features:
+Balance Error → detects inconsistencies in transaction updates
+Log Amount → handles skewed distributions
+Amount-to-Balance Ratio → measures transaction aggressiveness
+Zero Balance Error Flag → strong fraud indicator
 
-## Approach
+3. Modelling
+Models trained:
 
-### EDA
-- Identified strong class imbalance  
-- Fraud concentrated in **TRANSFER** and **CASH_OUT**  
-- Detected anomalies in balance updates  
+Logistic Regression (baseline)
+Decision Tree
+Random Forest
 
-### Feature Engineering
-- **Balance Error** → detects inconsistencies  
-- **Log Amount** → handles skew  
-- **Amount Ratio** → transaction aggressiveness  
-- **Zero Balance Flag** → strong fraud signal  
+Evaluation metrics:
 
----
+ROC-AUC
+Precision
+Recall
+F1-score
+4. Results
+Model	ROC-AUC
+Logistic Regression	0.9917
+Decision Tree	0.9996
+Random Forest	0.9988
+5. Key Insights
+Fraud transactions are highly concentrated in specific transaction types
+Fraudulent behaviour shows near-perfect balance consistency
+Engineered features significantly improved model performance
+Threshold tuning improved fraud detection recall
+6. Threshold Tuning
 
-##  Models & Results
+Instead of using the default 0.5 threshold:
 
-| Model                | ROC-AUC | Notes             |
-|---------------------|--------:|------------------|
-| Logistic Regression | 0.9917  | Baseline         |
-| Decision Tree       | 0.9996  | Overfitting risk |
-| Random Forest       | 0.9988  | Best trade-off   |
+Lower thresholds (0.2–0.3) improved fraud detection (recall)
+Trade-off observed with increased false positives
 
-👉 **Final Model:** Random Forest  
+Limitations
+Extremely high performance suggests possible data leakage
+Some features may not be available in real-time systems
+Further validation required on real-world datasets
 
----
-
-## Threshold Tuning
-- Default (0.5): misses fraud  
-- Tuned (0.2–0.3):  
-  - ↑ Recall (captures more fraud)  
-  - ↑ False positives (acceptable trade-off)  
-
----
-
-##  Key Insights
-- Fraud concentrated in specific transaction types  
-- Engineered features significantly improved performance  
-- Threshold tuning is critical in fraud systems  
-
----
-
-##  Limitations
-- Possible **data leakage** from balance-based features  
-- Some features may not be available in real-time  
-- Synthetic data ≠ full real-world complexity  
-
----
-
-##  Production Thinking
-- Real-time scoring constraints  
-- Data drift monitoring  
-- False positive management (alert fatigue)  
-
----
-
-##  Next Steps
-- Try XGBoost / LightGBM  
-- Deploy as API  
-- Build fraud monitoring dashboard  
-
----
-
-## 🛠️ Tech Stack
-Python • Pandas • Scikit-learn • Matplotlib • Seaborn  
-
----
-
-## 💡 Key Takeaway
-Designed with **real-world fraud detection trade-offs in mind**, balancing model performance with practical deployment constraints.
+Future Work
+Deploy model with real-time monitoring
+Experiment with XGBoost / LightGBM
+Implement precision-recall optimisation
+Build dashboard for fraud alerts
